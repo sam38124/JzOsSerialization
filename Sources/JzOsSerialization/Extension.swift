@@ -6,9 +6,9 @@
 //
 
 import Foundation
-extension Encodable {
+public extension Encodable {
     //儲存序列化物件
-    func storeObject(name: String, rout: String = "file")->Bool{
+     func storeObject(name: String, rout: String = "file")->Bool{
         SqlClass.getControlInstance().createRout(rout: rout)
         let encoder: JSONEncoder = JSONEncoder()
         let encoded = try! encoder.encode(self).base64EncodedString(options:NSData.Base64EncodingOptions.init(rawValue: 0))
@@ -16,9 +16,9 @@ extension Encodable {
         return true
     }
 }
-extension String{
+public extension String{
     //取得序列化物件
-    func getObject<T:Codable>(rout: String = "file")->T?{
+     func getObject<T:Codable>(rout: String = "file")->T?{
         var data=""
         let decoder: JSONDecoder = JSONDecoder()
         SqlClass.getControlInstance().item_File.query("select data from \(rout) where name='\(self)'", {it in
@@ -31,12 +31,12 @@ extension String{
         return decoded
     }
     //刪除序列化物件
-    func deleteObject(rout:String = "file")->Bool{
+      func deleteObject(rout:String = "file")->Bool{
         SqlClass.getControlInstance().item_File.exSql("delete from \(rout) where name='\(self)'")
         return true
     }
     //列出此路徑序列化物件
-    func listObject(limit: Int = 0)-> [JsonObject] {
+     func listObject(limit: Int = 0)-> [JsonObject] {
         var listJson = [JsonObject]()
         SqlClass.getControlInstance().item_File.query("select * from \(self) \((limit == 0) ? "" : "limit 0,\(limit)")", {
             it in
@@ -50,14 +50,14 @@ extension String{
         return true
     }
 }
-class JsonObject {
-    var name=""
-    var json=""
+public class JsonObject {
+    public var name=""
+    public var json=""
     init( name: String,  json: String) {
         self.name=name
         self.json=json
     }
-    func getObject<T: Codable>() -> T? {
+    public func getObject<T: Codable>() -> T? {
       let decoder: JSONDecoder = JSONDecoder()
         return try? decoder.decode(T.self, from: json.data(using: .utf8)!)
     }
