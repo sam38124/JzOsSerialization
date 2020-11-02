@@ -13,7 +13,7 @@ This is a serialization framework for ios can very easily to store and get objec
 > Support Swift Package。 <br/>
 
 #### 1.Open xcode and paste link for Swift Package
-+ > ##### https://github.com/sam38124/TestLibrary/JzOsSerialization
++ > ##### https://github.com/sam38124/JzOsSerialization
 <a name="start"></a>
 ## Quick Start
 ```swift
