@@ -16,7 +16,7 @@ public extension Encodable {
         return true
     }
 }
-public extension String{
+public  extension String{
     //取得序列化物件
      func getObject<T:Codable>(rout: String = "file")->T?{
         var data=""
@@ -59,6 +59,8 @@ public class JsonObject {
     }
     public func getObject<T: Codable>() -> T? {
       let decoder: JSONDecoder = JSONDecoder()
-        return try? decoder.decode(T.self, from: json.data(using: .utf8)!)
+        let decodedData = Data(base64Encoded: json.data(using: .utf8)!, options:NSData.Base64DecodingOptions.init(rawValue: 0))
+        if(decodedData==nil){return nil}
+        return  try? decoder.decode(T.self, from: decodedData!)
     }
 }
