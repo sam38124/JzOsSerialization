@@ -12,7 +12,7 @@ public extension Encodable {
         SqlClass.getControlInstance().createRout(rout: rout)
         let encoder: JSONEncoder = JSONEncoder()
         let encoded = try! encoder.encode(self).base64EncodedString(options:NSData.Base64EncodingOptions.init(rawValue: 0))
-        SqlClass.getControlInstance().item_File.exSql("insert or replace into \(rout) (name,data) values ('\(name)','\(encoded)')")
+        SqlClass.getControlInstance().item_File.exSql("insert or replace into `\(rout)` (name,data) values ('\(name)','\(encoded)')")
         return true
     }
 }
@@ -21,7 +21,7 @@ public  extension String{
      func getObject<T:Codable>(rout: String = "file")->T?{
         var data=""
         let decoder: JSONDecoder = JSONDecoder()
-        SqlClass.getControlInstance().item_File.query("select data from \(rout) where name='\(self)'", {it in
+        SqlClass.getControlInstance().item_File.query("select data from `\(rout)` where name='\(self)'", {it in
             data=it.getString(0)
         }, {})
        
@@ -32,13 +32,13 @@ public  extension String{
     }
     //刪除序列化物件
       func deleteObject(rout:String = "file")->Bool{
-        SqlClass.getControlInstance().item_File.exSql("delete from \(rout) where name='\(self)'")
+        SqlClass.getControlInstance().item_File.exSql("delete from `\(rout)` where name='\(self)'")
         return true
     }
     //列出此路徑序列化物件
      func listObject(limit: Int = 0)-> [JsonObject] {
         var listJson = [JsonObject]()
-        SqlClass.getControlInstance().item_File.query("select * from \(self) \((limit == 0) ? "" : "limit 0,\(limit)")", {
+        SqlClass.getControlInstance().item_File.query("select * from `\(self)` \((limit == 0) ? "" : "limit 0,\(limit)")", {
             it in
             listJson.append(JsonObject(name: it.getString(0),json: it.getString(1)))
         }, {})
@@ -46,7 +46,7 @@ public  extension String{
     }
     //清空此路徑序列化物件
     func deleteSerialRout()->Bool{
-        SqlClass.getControlInstance().item_File.exSql("DROP TABLE \(self)")
+        SqlClass.getControlInstance().item_File.exSql("DROP TABLE `\(self)`")
         return true
     }
 }
