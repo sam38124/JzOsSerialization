@@ -41,11 +41,7 @@ This is a serialization framework for ios can very easily to store and get objec
 # About me
 #### <font color="#0000dd"> Work for: </font><br /> 
 + ##### <font color="#660000">【Orange Electronic】橙的電子-Deputy Head of R&D </font><br /> 
-+ ##### <font color="#660000">【Square Studio】四方工作室-CEO </font><br />
-#### <font color="#0000dd"> Main skill: </font><br /> 
-+ ##### Android and IOS(4 years)<br/>  
-+ ##### Jsp(2 years)<br/> 
-+ ##### Javascript and Jquery and Ktor(1 years)<br /> 
++ ##### <font color="#660000">【Square Studio】萊恩設計-CEO </font><br /> 
 #### <font color="#0000dd"> Contact information: </font><br /> 
 +  ##### line:sam38124<br /> 
 
